@@ -1,0 +1,24 @@
+.formLogin {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: rgb(247, 239, 229);
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 25vh;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.formLogin>input {
+    width: 50%;
+    margin-bottom: 10px;
+}
+
+
+
+.loginTitle {
+    color: rgb(223, 201, 175);
+}

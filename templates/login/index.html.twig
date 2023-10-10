@@ -3,23 +3,26 @@
 {% block title %}Se connecter{% endblock %}
 
 {% block body %}
-<h1>Connectez-vous à votre compte McDalle</h1>
+<h1 class="loginTitle">Connectez-vous à votre compte McDalle</h1>
 
 {% if error %}
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    <form action="{{ path('app_login') }}" method="post">
-        <label for="username">Email:</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}">
+    <form action="{{ path('app_login') }}" method="post" class="formLogin">
+        <label for="username">Email</label>
+    <div class="input-group w-50">
+            <div class="input-group-text">@</div>
+            <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}">
+    </div>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="_password">
+        <label for="password">Mot de passe</label>
+        <input type="password" class="form-control" id="password" name="_password">
 
         {# If you want to control the URL the user is redirected to on success
         <input type="hidden" name="_target_path" value="/account"> #}
 
-        <button type="submit">login</button>
+        <button type="submit" class="btn btn-warning">Se connecter</button>
     </form>
 
 {% endblock %}
