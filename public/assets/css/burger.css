@@ -1,0 +1,20 @@
+.burgerCategory {
+    display: flex;
+    flex-direction: column;
+}
+
+.burgerTitle {
+    margin: 10% 0 0 15%;
+    font-size: 3rem;
+}
+
+.subBurgerCategory {
+    display: flex;
+    flex-direction: row;
+    margin: 2em 0 0 20%;
+}
+
+.subBurgerCategory>ul {
+    list-style-type: none;
+    font-size: 2rem;
+}
