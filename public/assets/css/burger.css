@@ -18,3 +18,36 @@
     list-style-type: none;
     font-size: 2rem;
 }
+
+/*************************************************************/
+/* affichage des produits */
+
+.mainCourse {
+    justify-content: space-evenly;
+    margin-top: 15%;
+}
+
+
+/**************************************************************/
+
+/* Détails des produits*/
+
+.titleDetails {
+    color: rgb(223, 201, 175);
+}
+
+.details {
+    flex-direction: column;
+}
+
+.detailsNamePrice {
+    display: flex;
+    flex-direction: column;
+    margin: 2em 0 0 20%;
+}
+
+.detailsAllergens {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 0 25%;
+}

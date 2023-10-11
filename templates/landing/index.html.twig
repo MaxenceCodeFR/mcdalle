@@ -10,7 +10,7 @@
     <div class="subBurgerCategory">
     {% for subcategory in subcategories %}
         <ul>
-            <li><a href="#">{{subcategory.name}}</a></li>
+            <li><a href="{{path('subcategory', {id:subcategory.id})}}">{{subcategory.name}}</a></li>
         </ul>
     {% endfor %}
     </div>
