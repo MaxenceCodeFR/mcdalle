@@ -1,14 +1,16 @@
 .form {
-
     padding: 20px;
-    background-color: rgb(247, 239, 229);
     width: 50%;
     margin-left: 25%;
     margin-top: 25vh;
-    border-radius: 15px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .registrationTitle {
-    color: rgb(223, 201, 175);
+    color: rgb(255, 255, 255);
 }
