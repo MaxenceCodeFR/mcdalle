@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Choisissez votre Burger {% endblock %}
+
+{% block body %}
+<h1 class="registrationTitle">Quelle type de personne êtes-vous ?</h1>
+<div class="burgerCategory">
+    <h2 class="burgerTitle">{{categories.name}}</h2>
+
+    <div class="subBurgerCategory">
+    {% for subcategory in subcategories %}
+        <ul>
+            <li><a href="{{path('subcategory', {id:subcategory.id})}}">{{subcategory.name}}</a></li>
+        </ul>
+    {% endfor %}
+    </div>
+    
+</div>
+
+{% endblock %}
