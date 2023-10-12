@@ -40,7 +40,7 @@ class LandingController extends AbstractController
     }
 
     //Ici on affiche le détail des produits quand on clique sur la subcatégorie
-    #[Route('/{id}', name: 'details')]
+    #[Route('/details-burger/{id}', name: 'details')]
     public function details(Products $products): Response
     {
         //On récupère les allergènes pour les afficher

@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+{% block title %}Nos Desserts{% endblock %}
+{% block body %}
+<h1 class="registrationTitle">Quelle diabète êtes-vous ?</h1>
+<div class="burgerCategory">
+    <h2 class="burgerTitle">{{categories.name}}</h2>
+
+    <div class="subBurgerCategory">
+    {% for subcategory in subcategories %}
+        <ul>
+            <li><a href="{{path('desserts_subcategory', {id:subcategory.id})}}">{{subcategory.name}}</a></li>
+        </ul>
+    {% endfor %}
+    </div>
+    
+</div>
+{% endblock %}
