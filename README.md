@@ -15,13 +15,19 @@ Les objectifs :
     - Sécuriser les utilisateurs via un email unique et un password hasher
     - Sécuriser les routes
     - Mettre en place différents roles (Utilisateurs, Admin, Admin Produits, Super Admin)
-    - Pouvoir ajouter des produits en Admin              ////////
-    - Pouvoir modifier des produits en Admin Produits    //CRUD//
-    - Pouvoir supprimer des produits en Super Admin      ///////
+    --------------------CRUD--------------------------------
+    - Pouvoir ajouter des produits en Admin              
+    - Pouvoir modifier des produits en Admin Produits    
+    - Pouvoir supprimer des produits en Super Admin
     - Afficher les catégories, les sous catégories, le détail de chaque produit
+    ---------------------CRUD----------------------------------
     - Mettre en place un panier
     - Simuler un envoi et une visualisation côté cuisine
    
   Réaliser en PHP/Symfony/Boostrap (éviter un maximum de coloriage)
 
+
+  ------------------------------------------------------------------------------------------------------BASE DE DONNEE----------------------------------------------------------------------------------------
   ![bibliothèque](https://github.com/MaxenceCodeFR/mcdalle/assets/105151136/aafebf69-cd48-4377-9322-589534cbdc93)
+
+  
