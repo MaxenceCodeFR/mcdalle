@@ -2,10 +2,11 @@
 
 namespace App\Form;
 
-use App\Entity\Allergens;
 use App\Entity\Products;
+use App\Entity\Allergens;
 use App\Entity\Categories;
 use Doctrine\ORM\Mapping\Entity;
+use App\Repository\CategoriesRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -27,6 +28,11 @@ class ProductsFormType extends AbstractType
                 'class' => Categories::class,
                 'choice_label' => 'name',
                 'group_by' => 'parent_id.name',
+                'query_builder' => function (CategoriesRepository $cr) {
+                    return $cr->createQueryBuilder('c')
+                        ->where('c.parent_id IS NOT NULL')
+                        ->orderBy('c.parent_id', 'ASC');
+                }
 
             ])
             ->add('allergens', EntityType::class, options: [

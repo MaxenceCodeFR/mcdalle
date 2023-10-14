@@ -5,6 +5,8 @@ namespace App\Controller\Admin;
 
 use App\Entity\Products;
 use App\Form\ProductsFormType;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,13 +21,24 @@ class ProductsController extends AbstractController
     }
 
     #[Route('/add', name: 'add')]
-    public function add(): Response
+    public function add(Request $request, EntityManagerInterface $em): Response
     {
         //Route accessible uniquement par le/les admins sauf PRODUCT_ADMIN cf. security.yaml et Voter
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $product = new Products();
         $productForm = $this->createForm(ProductsFormType::class, $product);
+
+        $productForm->handleRequest($request);
+
+        if ($productForm->isSubmitted() && $productForm->isValid()) {
+            $em->persist($product);
+            $em->flush();
+
+            $this->addFlash('success', 'Le produit a bien été ajouté');
+            return $this->redirectToRoute('admin_index');
+        }
+
 
         return $this->render('admin/add.html.twig', [
             'productForm' => $productForm->createView()
