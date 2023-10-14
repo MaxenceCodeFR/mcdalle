@@ -15,12 +15,12 @@ Les objectifs :
     - Sécuriser les utilisateurs via un email unique et un password hasher
     - Sécuriser les routes
     - Mettre en place différents roles (Utilisateurs, Admin, Admin Produits, Super Admin)
-    --------------------CRUD--------------------------------
+    - --------------------CRUD--------------------------------
     - Pouvoir ajouter des produits en Admin              
     - Pouvoir modifier des produits en Admin Produits    
     - Pouvoir supprimer des produits en Super Admin
     - Afficher les catégories, les sous catégories, le détail de chaque produit
-    ---------------------CRUD----------------------------------
+    - ---------------------CRUD----------------------------------
     - Mettre en place un panier
     - Simuler un envoi et une visualisation côté cuisine
    
