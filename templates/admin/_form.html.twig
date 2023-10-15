@@ -1,10 +1,13 @@
-
-
-{{form_start(productForm)}}
-    {{form_row(productForm.name)}}
-    {{form_row(productForm.price)}}
-    {{form_row(productForm.categories_id)}}
-    {{form_row(productForm.allergens)}}
-    <button type="submit" class="btn btn-info" >Valider</button>
-{{form_end(productForm)}}
+<div class="container .btn.custom-focus">
+    <div class="addProductForm">
+        {{form_start(productForm)}}
+            {{form_row(productForm.name)}}
+            {{form_row(productForm.price)}}
+            {{form_row(productForm.categories_id)}}
+            {{form_row(productForm.allergens)}}
+            {{form_row(productForm.images)}}
+            <button type="submit" class="btn btn-info" >Valider</button>
+        {{form_end(productForm)}}
+    </div>
+</div>
 

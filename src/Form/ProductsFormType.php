@@ -10,6 +10,7 @@ use App\Repository\CategoriesRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ProductsFormType extends AbstractType
@@ -21,7 +22,7 @@ class ProductsFormType extends AbstractType
                 'label' => 'Nom du produit'
             ])
             ->add('images')
-            ->add('price', options: [
+            ->add('price', MoneyType::class, options: [
                 'label' => 'Prix du produit'
             ])
             ->add('categories_id', EntityType::class, options: [

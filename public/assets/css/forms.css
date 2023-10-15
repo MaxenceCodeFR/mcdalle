@@ -1,0 +1,39 @@
+/* FORMULAIRE D'AJOUT DE PRODUIT */
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addProductForm {
+    padding: 20px;
+    width: 40%;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+
+.addProductForm input[type="text"],
+.addProductForm input[type="email"],
+.addProductForm input[type="password"] {
+    width: 100%;
+    padding: 10px;
+}
+
+/* Styles pour les petits écrans (moins de 768px de largeur) */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    .addProductForm {
+        max-width: 100%;
+    }
+}
+
+/*********************************/
