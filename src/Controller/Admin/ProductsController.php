@@ -32,10 +32,17 @@ class ProductsController extends AbstractController
         $productForm->handleRequest($request);
 
         if ($productForm->isSubmitted() && $productForm->isValid()) {
+
+            $file = $productForm->get("images")->getData();
+            /* Créer un nom unique pour l'image et recuperer l'extension*/
+            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+            $product->setImages($fileName);
+            /* Deplacer l'image dans le dossier public/images */
+            $file->move($this->getParameter('uploads'), $fileName);
+
             $em->persist($product);
             $em->flush();
 
-            $this->addFlash('success', 'Le produit a bien été ajouté');
             return $this->redirectToRoute('admin_index');
         }
 
@@ -56,10 +63,17 @@ class ProductsController extends AbstractController
         $productForm->handleRequest($request);
 
         if ($productForm->isSubmitted() && $productForm->isValid()) {
+
+            $file = $productForm->get("images")->getData();
+            /* Créer un nom unique pour l'image et recuperer l'extension*/
+            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+            $product->setImages($fileName);
+            /* Deplacer l'image dans le dossier public/images */
+            $file->move($this->getParameter('uploads'), $fileName);
+
             $em->persist($product);
             $em->flush();
 
-            $this->addFlash('success', 'Le produit a bien été ajouté');
             return $this->redirectToRoute('admin_index');
         }
         return $this->render('admin/edit.html.twig', [
