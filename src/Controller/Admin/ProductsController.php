@@ -46,11 +46,25 @@ class ProductsController extends AbstractController
     }
 
     #[Route('/edit/{id}', name: 'edit')]
-    public function edit(Products $products): Response
+    public function edit(Request $request, EntityManagerInterface $em, Products $product): Response
     {
         //Route accessible uniquement par l'admin "PRODUCT_ADMIN" cf. security.yaml et Voter
-        $this->denyAccessUnlessGranted('edit', $products);
-        return $this->render('admin/index.html.twig');
+        $this->denyAccessUnlessGranted('edit', $product);
+
+        $productForm = $this->createForm(ProductsFormType::class, $product);
+
+        $productForm->handleRequest($request);
+
+        if ($productForm->isSubmitted() && $productForm->isValid()) {
+            $em->persist($product);
+            $em->flush();
+
+            $this->addFlash('success', 'Le produit a bien été ajouté');
+            return $this->redirectToRoute('admin_index');
+        }
+        return $this->render('admin/edit.html.twig', [
+            'productForm' => $productForm->createView()
+        ]);
     }
 
     #[Route('/delete/{id}', name: 'delete')]

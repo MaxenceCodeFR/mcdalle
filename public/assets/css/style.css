@@ -3,6 +3,8 @@
 @import"burger.css";
 @import"forms.css";
 
+
+/* Je laisse volontairement du code commenté pour prevenir des bugs d'affichage */
 /* html {
     height: 100%;
     margin: 0;

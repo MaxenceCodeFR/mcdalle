@@ -6,7 +6,7 @@
             {{form_row(productForm.categories_id)}}
             {{form_row(productForm.allergens)}}
             {{form_row(productForm.images)}}
-            <button type="submit" class="btn btn-info" >Valider</button>
+            <button type="submit" class="btn btn-info" >{{ button_name|default('Ajouter') }}</button>
         {{form_end(productForm)}}
     </div>
 </div>

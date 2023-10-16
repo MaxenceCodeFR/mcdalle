@@ -28,6 +28,7 @@ class ProductsFormType extends AbstractType
             ->add('categories_id', EntityType::class, options: [
                 'class' => Categories::class,
                 'choice_label' => 'name',
+                'label' => 'Catégorie',
                 'group_by' => 'parent_id.name',
                 'query_builder' => function (CategoriesRepository $cr) {
                     return $cr->createQueryBuilder('c')
