@@ -67,11 +67,19 @@ class ProductsController extends AbstractController
         ]);
     }
 
-    #[Route('/delete/{id}', name: 'delete')]
-    public function delete(Products $products): Response
-    {
-        //Route accessible uniquement par l'admin "SUPER_ADMIN" et "ADMIN" cf. security.yaml et Voter
-        $this->denyAccessUnlessGranted('delete', $products);
-        return $this->render('admin/index.html.twig');
-    }
+    // #[Route('/{id}', name: 'delete')]
+    // public function delete(Products $product, Request $request, EntityManagerInterface $em)
+    // {
+    //     //Route accessible uniquement par l'admin "SUPER_ADMIN" et "ADMIN" cf. security.yaml et Voter
+    //     $this->denyAccessUnlessGranted('delete', $product);
+
+
+
+    //     // if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->request->get('_token'))) {
+    //     //     $em->remove($product);
+    //     //     $em->flush();
+    //     // }
+
+    //     // return $this->redirectToRoute('admin_index', [], Response::HTTP_SEE_OTHER);
+    // }
 }
