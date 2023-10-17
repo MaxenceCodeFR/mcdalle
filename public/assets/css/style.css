@@ -17,3 +17,28 @@ body {
     /* margin: 0;
     padding: 0; */
 }
+
+img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.links {
+    text-decoration: none;
+    /* Supprime le soulignement par défaut */
+    color: #747577;
+    /* Couleur du texte */
+    font-weight: bold;
+    /* Texte en gras */
+    transition: transform 0.3s;
+}
+
+/* Stylisation du lien au survol */
+.links:hover {
+    text-decoration: underline;
+    /* Soulignement au survol */
+    color: #dedede;
+    /* Changement de couleur au survol */
+    transform: scale(1.05);
+}

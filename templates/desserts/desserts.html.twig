@@ -1,20 +1,30 @@
 {% extends "base.html.twig" %}
 
+{# {% block title %}{{products.categories.name}}{% endblock %} #}
 
 {% block body %}
-<div class="d-flex flex-direction-row gap-5 mainCourse">
-    {% for product in products %}
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h2 class="card-title">{{product.name}}</h2>
-                <p class="card-text">{{product.price}} $</p>
-                <div class="d-flex">
-                    <button class="btn btn-danger card-link w-3" >Ajouter au panier</button>
-                    <a href="{{path('details', {id:product.id})}}" class="card-link">Détail du produit</a>
+<h1 class="text-light mb-5"> Choisissez votre boisson </h1>
+<div class="container">
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-3">
+            <div class="card text-bg-dark cardMainCourse h-100">
+                <div class="overlay"></div>
+                <img src="{{ asset('assets/uploads/' ~ product.images) }}" alt="{{ product.name }}">
+                <div class="card-img-overlay z-3">
+                    <h2 class="card-title">{{ product.name }}</h2>
+                    <p class="card-text">{{ product.price }}$</p>
+                    <p class="card-text"><small>Last updated 3 mins ago</small></p>
+                    <button class="btn btn-danger card-link w-100">Ajouter au panier</button>
+                    <a href="{{ path('desserts_details', { id: product.id }) }}" class="card-link">Détail du produit</a>
                 </div>
-            </div> 
+            </div>
         </div>
-    {% endfor %}
+        {% if loop.index is divisible by(4) %}
+            </div><div class="row">
+        {% endif %}
+        {% endfor %}
+    </div>
 </div>
-<a href="{{path('desserts')}}" class="btn btn-success"> Retour aux desserts</a>
+<a href="{{ path('desserts')}}" class=" btn btn-success m-5 "> Retour au desserts</a>
 {% endblock %}

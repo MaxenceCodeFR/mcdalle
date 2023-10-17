@@ -8,6 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ProductsRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: ProductsRepository::class)]
 class Products
@@ -18,12 +20,24 @@ class Products
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Le nom du produit est obligatoire')]
+    #[Assert\Length(
+        min: 6,
+        max: 25,
+        minMessage: 'Le nom du produit doit contenir au moins {{ limit }} caractères',
+        maxMessage: 'Le nom du produit ne doit pas dépasser {{ limit }} caractères'
+    )]
     private ?string $name = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $images = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'Le prix du produit est obligatoire')]
+    //Positive ou PositiveOrZero permet de vérifier que le prix est bien positif
+    //Je ne l'utilise pas ici car il est déjà défini dans "src/Form/ProductsFormType.php"
+    //Mais il est possible de faire une contrainte ici aussi
+    // #[Assert\Positive(message: 'Le prix du produit doit être positif')]
     private ?float $price = null;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
