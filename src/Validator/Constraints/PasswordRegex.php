@@ -9,13 +9,15 @@ class PasswordRegex extends Compound
     protected function getConstraints(array $options): array
     {
         return [
-            //regex -> to have at elast one digit
+            //regex -> pour avoir au minium un chiffre ou plus 
+            // d = digit
+            // i = case insensitive (autorise les majuscules et minuscules)
+            // + = peut avoir plusieurs chiffres
             new Assert\Regex([
                 'pattern' => '/\d+/i',
                 'message' => 'Votre mot de passe doit contenir au moins un chiffre'
             ]),
-            //regex -> to have at elast one special char from the list
-            //note: list of special-char is [#?!@$%^&*-]. Adjust to suite your needs
+            //regex -> pour avoir au minumum un caractère parmis la liste
             new Assert\Regex([
                 'pattern' => '/[#?!@$%^&*-]+/i',
                 'message' => 'Votre mot de passe doit contenir au moins un caractère spécial(#-?-!-@-$-%-^-&-*-)'
