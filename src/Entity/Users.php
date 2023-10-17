@@ -2,13 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\UsersRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UsersRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints\PasswordStrength;
 
 #[ORM\Entity(repositoryClass: UsersRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
@@ -20,6 +23,8 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Assert\Email(message: 'L\'email {{ value }} n\'est pas valide')]
+    #[Assert\NotBlank(message: 'L\'email est obligatoire')]
     private ?string $email = null;
 
     #[ORM\Column]
@@ -29,6 +34,11 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
+    //PasswordStrenght permet de vérifier la force du mot de passe automatiquement grace a SYMFONY !!
+    //Je ne l'utilise pas volontairement en dev
+    // #[Assert\PasswordStrength([
+    //     // 'minScore' => PasswordStrength::STRENGTH_MEDIUM
+    // ])]
     private ?string $password = null;
 
     #[ORM\OneToMany(mappedBy: 'users_id', targetEntity: Orders::class)]
