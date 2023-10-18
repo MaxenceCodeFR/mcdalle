@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Products;
+use App\Repository\ProductsRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,10 +13,24 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class CartController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(SessionInterface $session): Response
+    public function index(SessionInterface $session, ProductsRepository $productsRepository): Response
     {
         $basket = $session->get('basket', []);
-        dd($basket);
+
+        $data = [];
+        $total = 0;
+
+        foreach ($basket as $id => $quantity) {
+            $product = $productsRepository->find($id);
+
+            $data[] = [
+                'product' => $product,
+                'quantity' => $quantity
+            ];
+
+            $total += $product->getPrice() * $quantity;
+        }
+        dd($data);
         return $this->render('cart/index.html.twig');
     }
     #[Route('/add-burger/{id}', name: 'add_burger')]
