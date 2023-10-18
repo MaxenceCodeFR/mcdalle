@@ -15,7 +15,7 @@
                     <h2 class="card-title">{{ product.name }}</h2>
                     <p class="card-text">{{ product.price }}$</p>
                     <p class="card-text"><small>Last updated 3 mins ago</small></p>
-                    <button class="btn btn-danger card-link w-100">Ajouter au panier</button>
+                    <a href="{{ path('cart_add_drink', {id:product.id})}}" class="btn btn-danger card-link w-100">Ajouter au panier</a>
                     <a href="{{ path('drinks_details', { id: product.id }) }}" class="card-link">Détail du produit</a>
                 </div>
             </div>
