@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Products;
 use App\Form\ProductsFormType;
+use App\Repository\ProductsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,9 +16,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ProductsController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(): Response
+    public function index(ProductsRepository $productsRepository): Response
     {
-        return $this->render('admin/index.html.twig');
+        $products = $productsRepository->findAll();
+
+        return $this->render('admin/products/index.html.twig', compact('products'));
     }
 
     #[Route('/add', name: 'add')]
@@ -43,11 +46,11 @@ class ProductsController extends AbstractController
             $em->persist($product);
             $em->flush();
 
-            return $this->redirectToRoute('admin_index');
+            return $this->redirectToRoute('admin_interface_index');
         }
 
 
-        return $this->render('admin/add.html.twig', [
+        return $this->render('admin/products/add.html.twig', [
             'productForm' => $productForm->createView()
         ]);
     }
@@ -74,26 +77,10 @@ class ProductsController extends AbstractController
             $em->persist($product);
             $em->flush();
 
-            return $this->redirectToRoute('admin_index');
+            return $this->redirectToRoute('admin_interface_index');
         }
-        return $this->render('admin/edit.html.twig', [
+        return $this->render('admin/products/edit.html.twig', [
             'productForm' => $productForm->createView()
         ]);
     }
-
-    // #[Route('/{id}', name: 'delete')]
-    // public function delete(Products $product, Request $request, EntityManagerInterface $em)
-    // {
-    //     //Route accessible uniquement par l'admin "SUPER_ADMIN" et "ADMIN" cf. security.yaml et Voter
-    //     $this->denyAccessUnlessGranted('delete', $product);
-
-
-
-    //     // if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->request->get('_token'))) {
-    //     //     $em->remove($product);
-    //     //     $em->flush();
-    //     // }
-
-    //     // return $this->redirectToRoute('admin_index', [], Response::HTTP_SEE_OTHER);
-    // }
 }
