@@ -1,0 +1,42 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Liste des catégories{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+        {% include "commons/_admin_menu.html.twig" %}
+            <main class="col-9 border border-light bg-light p-3">
+                <h1>Liste des catégories</h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nom</th>
+                            <th>Parent</th>
+                            <th>Ordre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for category in categories %}
+                            <tr>
+                                <td>{{ category.id }}</td>
+                                <td>{{ category.name }}</td>
+                                {# Note a soi même : 
+                                Dans une entité, si le nom de propriété contient un underscore
+                                cela ne fonctionnera pas car les propriété sont converties
+                                de snake_case à camelCase #}
+                                <td>{{ category.categoryOrder }}</td>
+                                <td>
+                                {% if category.parentId is not null %}
+                                    {{ category.parentId.name }}
+                                {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </main>
+        </div>
+    </div>
+{% endblock %}

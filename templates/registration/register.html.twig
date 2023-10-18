@@ -7,10 +7,17 @@
 {# Mise en forme du formulaire d'inscription automatiquement via bootstrap  #}
 {% form_theme registrationForm 'bootstrap_5_layout.html.twig' %}
 
+{% if app.user %}
+    <div class="mb-3 text-light">
+        Vous êtes déjà connecté en tant que <span class="fw-bold">{{ app.user.email }}</span>, <a href="{{ path('app_logout') }}">Déconnexion</a>
+    </div>
+    <div class="text-light">
+        <p> Ou commencer à commander </p>
+        <a href="{{ path('landing') }}" class="btn btn-success">Commander</a>
+    </div>
+{% else %}
 <h1 class="registrationTitle">Créer un compte McDalle</h1>
-
     {{ form_errors(registrationForm) }}
-
 <div class="form d-flex justify-content-center form-group">
     {{ form_start(registrationForm) }}
     <div class=" registrationEmail form-group">
@@ -20,10 +27,13 @@
         {{ form_row(registrationForm.plainPassword, {
             label: 'Mot de passe'
         }) }}
+        <div class="form-text">Votre mot de passe doit contenir au moins un chiffre (ex. 1 2 3 4 5 ...)</div>
+        <div class="form-text">Votre mot de passe doit contenir au moins un caractère spécial (ex. ? # & - [ ...)</div>
     </div>
         {{ form_row(registrationForm.agreeTerms) }}
 
         <button type="submit" class="btn btn-success w-100">S'enregistrer</button>
     {{ form_end(registrationForm) }}
 </div>
+{% endif %}
 {% endblock %}

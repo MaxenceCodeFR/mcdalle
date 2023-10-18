@@ -3,27 +3,30 @@
 {% block title %}Se connecter{% endblock %}
 
 {% block body %}
+{% if app.user %}
+    <div class="mb-3 text-light">
+        Vous êtes déjà connecté en tant que <span class="fw-bold">{{ app.user.email }}</span>, <a href="{{ path('app_logout') }}">Déconnexion</a>
+    </div>
+    <div class="text-light">
+        <p> Ou commencer à commander </p>
+        <a href="{{ path('landing') }}" class="btn btn-success">Commander</a>
+    </div>
+{% else %}
 <h1 class="loginTitle">Connectez-vous à votre compte McDalle</h1>
-
 {% if error %}
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-
+{% endif %}
     <form action="{{ path('app_login') }}" method="post" class="formLogin">
         <label for="username">Email</label>
-    <div class="input-group w-50">
+        <div class="input-group w-50">
             <div class="input-group-text">@</div>
             <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}">
-    </div>
-
+        </div>
         <label for="password">Mot de passe</label>
         <input type="password" class="form-control" id="password" name="_password">
-
-        
         <input type="hidden" name="_target_path" value="/choose">
-
         <button type="submit" class="btn btn-warning">Se connecter</button>
         <p>Pas encore ? inscrivez-vous <a href="{{ path('app_register') }}">ici</a></p>
     </form>
-
+{% endif %}
 {% endblock %}
