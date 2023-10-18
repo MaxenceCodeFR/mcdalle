@@ -1,0 +1,47 @@
+{% extends "base.html.twig" %}
+{% block title %}Administration des utilisateurs{% endblock %}
+{% block body %}
+<div class="container">
+        <div class="row">
+        {% include "commons/_admin_menu.html.twig" %}
+            <main class="col-9 border border-light bg-light p-3">
+                <h1>Liste des utilisateurs</h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Email</th>
+                            <th>Roles</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                            <tr>
+                                <td>{{ user.id }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{% for role in user.roles %}
+                                    {% if role == 'ROLE_SUPER_ADMIN' %}
+                                        {% set name = 'Super Administrateur' %}
+                                        {% set color = 'danger' %}
+                                    {% elseif role == 'ROLE_ADMIN' %}
+                                        {% set name = 'Administrateur' %}
+                                        {% set color = 'warning' %}
+                                    {% elseif role == 'ROLE_PRODUCT_ADMIN' %}
+                                        {% set name = 'Administrateur Produit' %}
+                                        {% set color = 'success' %}
+                                    {% else %}
+                                        {% set name = 'Utilisateur' %}
+                                        {% set color = 'primary' %}
+                                    {% endif %}
+                                    <span class="badge bg-{{color}}">{{ name }}</span>
+                                {% endfor %}
+                                </td>
+                                <td></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </main>
+        </div>
+    </div>
+{% endblock %}
