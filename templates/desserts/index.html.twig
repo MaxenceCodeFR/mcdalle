@@ -2,6 +2,7 @@
 {% block title %}Nos Desserts{% endblock %}
 {% block body %}
 <h1 class="registrationTitle">Quelle diabète êtes-vous ?</h1>
+{% include "commons/_basket.html.twig" %}
 <div class="burgerCategory text-light">
     <h2 class="burgerTitle">{{categories.name}}</h2>
 
@@ -12,6 +13,7 @@
         </ul>
     {% endfor %}
     </div>
-    
+    <a href="{{path('landing')}}" class="btn btn-warning w-25 m-2">Choisir sa burger</a>
+    <a href="{{path('drinks')}}" class="btn btn-info w-25 m-2">Choisir sa boisson</a>
 </div>
 {% endblock %}
