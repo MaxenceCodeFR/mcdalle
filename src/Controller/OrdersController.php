@@ -66,6 +66,8 @@ class OrdersController extends AbstractController
         $em->persist($orders);
         $em->flush();
 
+        $session->remove('basket');
+
         return $this->render('orders/index.html.twig', [
             'controller_name' => 'OrdersController',
         ]);

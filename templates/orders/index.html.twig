@@ -1,20 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello OrdersController!{% endblock %}
+{% block title %}Merci ! {% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+ <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <h1 class="text-white" >Merci infiniment !</h1>
+                <p class="text-white">Nous vous remercions pour votre commande
+                elle sera prête bientôt !</p>
+                <p class="text-warning">Vous pouvez vous deconnecter</p>
+                <a href="{{path('app_logout')}}" class="btn btn-info">Déconnexion</a>
+            </div>
+        </div>
+    </div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/mcdalle/src/Controller/OrdersController.php'|file_link(0) }}">src/Controller/OrdersController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/mcdalle/templates/orders/index.html.twig'|file_link(0) }}">templates/orders/index.html.twig</a></code></li>
-    </ul>
-</div>
 {% endblock %}
