@@ -30,13 +30,14 @@ class OrdersController extends AbstractController
         if ($basket === []) {
             return $this->redirectToRoute('landing');
         }
+        $reference = 'CMD_' . uniqid() . '_' . time();
 
         //On génère ensuite la commande
         $orders =  new Orders();
 
         //On recupère l'utilisateur qui passe la commande et la référance de la commande
         $orders->setUsersId($this->getUser());
-        $orders->setReference(uniqid());
+        $orders->setReference($reference);
         $orders->setCreatedAt(new \DateTimeImmutable());
 
         //Pour faire une commande, il faut recuperer les produits du panier
