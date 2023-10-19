@@ -30,6 +30,8 @@ class OrdersController extends AbstractController
         if ($basket === []) {
             return $this->redirectToRoute('landing');
         }
+
+        //On créee la référence de la commande en combinant un id POTENTIELLEMENT unique et un horodatage
         $reference = 'CMD_' . uniqid() . '_' . time();
 
         //On génère ensuite la commande
