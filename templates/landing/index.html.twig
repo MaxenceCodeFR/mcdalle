@@ -9,9 +9,9 @@
 </div>
 {% endif %}
 <h1 class="registrationTitle">Quelle type de personne êtes-vous ?</h1>
+{% include "commons/_basket.html.twig" %}
 <div class="burgerCategory">
     <h2 class="burgerTitle text-light">{{categories.name}}</h2>
-
     <div class="subBurgerCategory">
     {% for subcategory in subcategories %}
         <ul>
@@ -19,7 +19,7 @@
         </ul>
     {% endfor %}
     </div>
-    
+    <a href="{{path('drinks')}}" class="btn btn-warning w-25 m-2">Choisir sa boisson</a>
+    <a href="{{path('desserts')}}" class="btn btn-info w-25 m-2">Choisir son dessert</a>
 </div>
-
 {% endblock %}
