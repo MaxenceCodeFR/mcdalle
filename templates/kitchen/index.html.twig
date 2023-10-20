@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello KitchenController!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="my-4">Liste des commandes</h1>
+    <div class="row">
+        {% for order in orders %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <strong>Commande #{{ order.id }}</strong>
+                    <span class="float-end">{{ order.createdAt | date('H:i:s') }}</span>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Référence: {{ order.reference }}</h5>
+                    <p class="card-text">Email de l'utilisateur: {{ order.usersId.email }}</p>
+                    <h6 class="card-subtitle mb-2 text-muted">Détails de la commande</h6>
+                    <ul class="list-group">
+                        {% for orderDetail in order.ordersDetails %}
+                            <li class="list-group-item">
+                                Quantité: {{ orderDetail.quantity }}<br>
+                                Produit: {{ orderDetail.products.name }}<br>
+                                Prix: {{ orderDetail.products.price }} €
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="{{path('kitchen_delete', {id:order.id})}}" class="btn btn-danger btn-block w-100">Commande prête</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
