@@ -5,7 +5,6 @@ namespace App\Entity;
 use App\Repository\OrdersRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: OrdersRepository::class)]
@@ -19,13 +18,18 @@ class Orders
     #[ORM\Column(length: 255, unique: true)]
     private ?string $reference = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, options: ['default' => 'CURRENT_TIMESTAMP'])]
-    private ?\DateTimeInterface $created_at = null;
+    #[ORM\Column(type: 'datetime_immutable', options: ['default' => 'CURRENT_TIMESTAMP'])]
+    private ?\DateTimeInterface $created_at;
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
     private ?Users $users_id = null;
 
-    #[ORM\OneToMany(mappedBy: 'orders', targetEntity: OrdersDetails::class, orphanRemoval: true)]
+    #[ORM\OneToMany(
+        mappedBy: 'orders',
+        targetEntity: OrdersDetails::class,
+        orphanRemoval: true,
+        cascade: ['persist']
+    )]
     private Collection $ordersDetails;
 
     public function __construct()

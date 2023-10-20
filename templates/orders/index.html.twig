@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Merci ! {% endblock %}
+
+{% block body %}
+ <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <h1 class="text-white" >Merci infiniment !</h1>
+                <p class="text-white">Nous vous remercions pour votre commande
+                elle sera prête bientôt !</p>
+                <p class="text-warning">Vous pouvez vous deconnecter</p>
+                <a href="{{path('app_logout')}}" class="btn btn-info">Déconnexion</a>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
